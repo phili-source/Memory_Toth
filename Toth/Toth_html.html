@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Spiel</title>
+    <link rel="stylesheet" href="Toth_css.css">
+</head>
+<body>
+<!-- Verspielte Überschrift -->
+<div id="header" class="header">
+    <h1>Memory Spiel</h1>
+</div>
+
+<!-- Hauptspielcontainer -->
+<div id="game-container">
+    <p id="scores">
+        <span id="player1-name">Spieler 1</span>: <span id="player1-score">0</span> |
+        <span id="player2-name">Spieler 2</span>: <span id="player2-score">0</span>
+    </p>
+    <div id="memory-board" class="memory-board"></div>
+    <p id="turn-indicator">Spieler 1 ist am Zug</p>
+    <button id="reset-button">Neustart</button>
+</div>
+
+<!-- Pop-up für die Namenseingabe -->
+<div id="name-popup" class="popup">
+    <div class="popup-content">
+        <h2>Spieler-Namen eingeben</h2>
+        <label for="player1-name-input"></label>
+        <input type="text" id="player1-name-input" placeholder="Name für Spieler 1">
+        <label for="player2-name-input"></label>
+        <input type="text" id="player2-name-input" placeholder="Name für Spieler 2">
+        <button id="start-game">Spiel Starten</button>
+    </div>
+</div>
+
+<!-- Sieger-Pop-up -->
+<div id="winner-popup" class="popup" style="display: none;">
+    <div class="popup-content">
+        <h2 id="winner-message"></h2>
+        <button id="close-winner-popup">Schließen</button>
+    </div>
+</div>
+
+<script src="Toth_java.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

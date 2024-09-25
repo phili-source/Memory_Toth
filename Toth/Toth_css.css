@@ -1,0 +1,259 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('images/Wolke.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.header {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #ff6f61, #ffcc00, #4caf50, #2196f3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Punktestand kleiner und mit statischen Farben */
+#scores {
+    font-size: 1.2rem; /* Kleinere Schriftgröße */
+    font-family: 'Comic Sans MS', cursive;
+    color: #ffffff;
+    background-color: #ffcc00; /* Statischer Hintergrund */
+    padding: 8px 15px;
+    border-radius: 10px; /* Runde Ecken */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Platz zwischen Spieler 1 und 2 */
+}
+
+#player1-score, #player2-score {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #ffffff; /* Weiße Schrift für die Punkte */
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: #ffcc00; /* Statischer grüner Hintergrund */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hauptspielcontainer */
+#game-container {
+    display: none; /* Anfangs ausblenden */
+    flex-direction: column;
+    align-items: center;
+}
+
+.memory-board {
+    display: grid;
+    grid-template-columns: repeat(5, 120px); /* 5 Spalten */
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.memory-card {
+    width: 120px; /* Größere Karten */
+    height: 120px; /* Größere Karten */
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.memory-card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    display: none;
+}
+
+.memory-card.flipped img {
+    display: block;
+}
+
+.memory-card.flipped {
+    background-color: transparent;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Design für den Neustart-Button */
+#reset-button {
+    font-family: 'Comic Sans MS', cursive;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#reset-button:hover {
+    background-color: #ffcc00;
+    transform: scale(1.1);
+}
+
+/* Zuganzeige verspielter gestalten und animiert */
+#turn-indicator {
+    margin-top: 10px;
+    font-size: 1.8rem;
+    font-family: 'Comic Sans MS', cursive;
+    color: #ffffff;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: pulse 1.5s infinite; /* Pulsierende Animation */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Styles für das Pop-up */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: linear-gradient(135deg, #ff6f61, #ffcc00);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 2px solid #fff;
+}
+
+.popup-content h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 20px;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+.popup-content label {
+    display: block;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.popup-content input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 80%;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content button {
+    padding: 12px 25px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s ease;
+}
+
+.popup-content button:hover {
+    background: #388e3c;
+}
+
+/* Responsive Anpassungen für kleinere Bildschirme */
+@media (max-width: 768px) {
+    #scores {
+        font-size: 1.1rem;
+        padding: 6px 12px;
+    }
+
+    #player1-score, #player2-score {
+        font-size: 1.2rem;
+    }
+
+    #turn-indicator {
+        font-size: 1.5rem; /* Kleinere Schriftgröße für den Turn-Indikator */
+        padding: 8px 15px; /* Weniger Padding */
+    }
+}
+
+@media (max-width: 480px) {
+    #scores {
+        font-size: 1rem;
+        padding: 4px 8px;
+    }
+
+    #player1-score, #player2-score {
+        font-size: 1rem;
+    }
+
+    #turn-indicator {
+        font-size: 1.2rem; /* Noch kleinere Schriftgröße für den Turn-Indikator */
+        padding: 6px 12px; /* Weniger Padding */
+    }
+}
+
+
+
+
